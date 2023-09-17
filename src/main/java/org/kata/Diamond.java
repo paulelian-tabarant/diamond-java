@@ -22,4 +22,8 @@ public class Diamond {
 
         return SPACE.repeat(numberOfSpacesInOffset);
     }
+
+    public static String addOffset(String row, String offset) {
+        return offset + row + offset;
+    }
 }

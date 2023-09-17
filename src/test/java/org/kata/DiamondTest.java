@@ -41,4 +41,19 @@ class DiamondTest {
             }
         );
     }
+
+    @Test
+    void shouldPrintOffsetOnBothSidesOfEachDiamondRow() {
+        // Given
+        var row = "C   C";
+        var offset = " ";
+
+        var expectedLine = " C   C ";
+
+        // When
+        var actualLine = Diamond.addOffset(row, offset);
+
+        // Then
+        assertThat(actualLine).isEqualTo(expectedLine);
+    }
 }
