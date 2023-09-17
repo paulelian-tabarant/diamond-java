@@ -11,6 +11,8 @@ class DiamondTest {
     @Test
     void shouldMakeSpaceIntoLetterAccordingItsPositionInAlphabet() {
         // Given
+        var diamond = new Diamond('D');
+
         var abcdTestCases = Map.of(
             'A', "A",
             'B', "B B",
@@ -19,13 +21,14 @@ class DiamondTest {
         );
 
         // When Then
-        abcdTestCases.forEach((inputLetter, expectedRow) -> assertThat(Diamond.getRow(inputLetter)).isEqualTo(expectedRow));
+        abcdTestCases.forEach((inputLetter, expectedRow) -> assertThat(diamond.getRow(inputLetter)).isEqualTo(expectedRow));
     }
 
     @Test
     void shouldOffsetEachLetterRowAccordingToRequestedLetterPositionInAlphabet() {
         // Given
-        var requestedLetter = 'D';
+        var diamond = new Diamond('D');
+
         var abcdTestCases = Map.of(
             'A', "   ",
             'B', "  ",
@@ -36,7 +39,7 @@ class DiamondTest {
         // When Then
         abcdTestCases.forEach(
             (rowLetter, expectedOffset) -> {
-                var actualOffset = Diamond.getRowOffset(rowLetter, requestedLetter);
+                var actualOffset = diamond.getRowOffset(rowLetter);
                 assertThat(actualOffset).isEqualTo(expectedOffset);
             }
         );

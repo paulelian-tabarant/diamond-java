@@ -1,23 +1,28 @@
 package org.kata;
 
 public class Diamond {
+    private Character letter;
+
+    public Diamond(Character letter) {
+        this.letter = letter;
+    }
 
     public static final String SPACE = " ";
     public static final Character A = 'A';
 
-    public static String getRow(Character letter) {
-        if (letter.equals(A)) return "A";
+    public String getRow(Character rowLetter) {
+        if (rowLetter.equals(A)) return "A";
 
-        var numberOfSpacesIntoDiamond = getNumberOfSpacesIntoDiamondAt(letter);
+        var numberOfSpacesIntoDiamond = getNumberOfSpacesIntoDiamondAt(rowLetter);
 
-        return letter + SPACE.repeat(numberOfSpacesIntoDiamond) + letter;
+        return rowLetter + SPACE.repeat(numberOfSpacesIntoDiamond) + rowLetter;
     }
 
-    private static int getNumberOfSpacesIntoDiamondAt(Character letter) {
-        return 2 * (letter - A + 1) + 1;
+    private static int getNumberOfSpacesIntoDiamondAt(Character rowLetter) {
+        return 2 * (rowLetter - A + 1) + 1;
     }
 
-    public static String getRowOffset(char letterOfRow, char letter) {
+    public String getRowOffset(char letterOfRow) {
         var numberOfSpacesInOffset = (int) letter - letterOfRow;
 
         return SPACE.repeat(numberOfSpacesInOffset);
