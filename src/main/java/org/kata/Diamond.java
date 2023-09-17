@@ -16,4 +16,10 @@ public class Diamond {
     private static int getNumberOfSpacesIntoDiamondAt(Character letter) {
         return 2 * (letter - A + 1) + 1;
     }
+
+    public static String getRowOffset(char letterOfRow, char letter) {
+        var numberOfSpacesInOffset = (int) letter - letterOfRow;
+
+        return SPACE.repeat(numberOfSpacesInOffset);
+    }
 }
