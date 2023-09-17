@@ -82,7 +82,7 @@ class DiamondTest {
     }
 
     @Test
-    void shouldPrintAppropriateLinesAccordingToDiamondLetter() {
+    void shouldPrintAppropriateLinesOnADiamondSideAccordingToItsLetter() {
         // Given
         var diamond = new Diamond('D');
 
@@ -94,5 +94,23 @@ class DiamondTest {
         assertThat(lines.get(1)).isEqualTo("  B B  ");
         assertThat(lines.get(2)).isEqualTo(" C   C ");
         assertThat(lines.get(3)).isEqualTo("D     D");
+    }
+
+    @Test
+    void shouldPrintHorizontallySymmetricalLinesFromAToDiamondLetter() {
+        // Given
+        var diamond = new Diamond('D');
+
+        // When
+        List<String> lines = diamond.getLines();
+
+        // Then
+        assertThat(lines.get(0)).isEqualTo("   A   ");
+        assertThat(lines.get(1)).isEqualTo("  B B  ");
+        assertThat(lines.get(2)).isEqualTo(" C   C ");
+        assertThat(lines.get(3)).isEqualTo("D     D");
+        assertThat(lines.get(4)).isEqualTo(" C   C ");
+        assertThat(lines.get(5)).isEqualTo("  B B  ");
+        assertThat(lines.get(6)).isEqualTo("   A   ");
     }
 }

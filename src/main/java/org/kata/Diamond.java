@@ -2,12 +2,12 @@ package org.kata;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
+import static java.util.Collections.reverse;
 import static java.util.stream.IntStream.rangeClosed;
 
 public class Diamond {
-    private Character letter;
+    private final Character letter;
 
     public Diamond(Character letter) {
         this.letter = letter;
@@ -15,6 +15,37 @@ public class Diamond {
 
     public static final String SPACE = " ";
     public static final Character A = 'A';
+
+    public List<String> getLines() {
+        var side = getDiamondSide();
+        var middleLine = getLine(letter);
+        var otherSide = new ArrayList<>(side);
+        reverse(otherSide);
+
+        var diamond = new ArrayList<>(side);
+        diamond.add(middleLine);
+        diamond.addAll(otherSide);
+
+        return diamond;
+    }
+
+    private List<String> getDiamondSide() {
+        var linesCount = letter - A;
+
+        List<Integer> linePositions = rangeClosed(0, linesCount - 1).boxed().toList();
+
+        return linePositions.stream().map(linePosition -> {
+            char lineChar = getLineChar(linePosition);
+            return getLine(lineChar);
+        }).toList();
+    }
+
+    public String getLine(Character rowLetter) {
+        var row = getRow(rowLetter);
+        var offset = getRowOffset(rowLetter);
+
+        return addOffset(row, offset);
+    }
 
     public String getRow(Character rowLetter) {
         if (rowLetter.equals(A)) return "A";
@@ -38,31 +69,8 @@ public class Diamond {
         return offset + row + offset;
     }
 
-    public String getLine(Character rowLetter) {
-        var row = getRow(rowLetter);
-        var offset = getRowOffset(rowLetter);
-        var line = addOffset(row, offset);
-
-        return line;
-    }
-
-    public List<String> getLines() {
-        var linesCount = getLinesCount();
-
-        List<Integer> linePositions = rangeClosed(0, linesCount - 1).boxed().toList();
-
-        return linePositions.stream().map(linePosition -> {
-            char lineChar = getLineChar(linePosition);
-            return getLine(lineChar);
-        }).toList();
-    }
-
     private static char getLineChar(Integer linePosition) {
         int charPosition = A + linePosition;
         return (char) charPosition;
-    }
-
-    private int getLinesCount() {
-        return letter - A + 1;
     }
 }
