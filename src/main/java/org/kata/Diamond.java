@@ -1,5 +1,11 @@
 package org.kata;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.IntStream;
+
+import static java.util.stream.IntStream.rangeClosed;
+
 public class Diamond {
     private Character letter;
 
@@ -38,5 +44,25 @@ public class Diamond {
         var line = addOffset(row, offset);
 
         return line;
+    }
+
+    public List<String> getLines() {
+        var linesCount = getLinesCount();
+
+        List<Integer> linePositions = rangeClosed(0, linesCount - 1).boxed().toList();
+
+        return linePositions.stream().map(linePosition -> {
+            char lineChar = getLineChar(linePosition);
+            return getLine(lineChar);
+        }).toList();
+    }
+
+    private static char getLineChar(Integer linePosition) {
+        int charPosition = A + linePosition;
+        return (char) charPosition;
+    }
+
+    private int getLinesCount() {
+        return letter - A + 1;
     }
 }

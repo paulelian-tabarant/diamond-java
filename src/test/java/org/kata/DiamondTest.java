@@ -80,4 +80,19 @@ class DiamondTest {
             }
         );
     }
+
+    @Test
+    void shouldPrintAppropriateLinesAccordingToDiamondLetter() {
+        // Given
+        var diamond = new Diamond('D');
+
+        // When
+        List<String> lines = diamond.getLines();
+
+        // Then
+        assertThat(lines.get(0)).isEqualTo("   A   ");
+        assertThat(lines.get(1)).isEqualTo("  B B  ");
+        assertThat(lines.get(2)).isEqualTo(" C   C ");
+        assertThat(lines.get(3)).isEqualTo("D     D");
+    }
 }
