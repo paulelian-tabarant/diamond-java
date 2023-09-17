@@ -59,4 +59,25 @@ class DiamondTest {
         // Then
         assertThat(actualLine).isEqualTo(expectedLine);
     }
+
+    @Test
+    void shouldPrintEachLetterLineWithCorrectSpacingBetweenLettersAndOffset() {
+        // Given
+        var diamond = new Diamond('D');
+
+        var abcdTestCases = Map.of(
+            'A', "   A   ",
+            'B', "  B B  ",
+            'C', " C   C ",
+            'D', "D     D"
+        );
+
+        // When Then
+        abcdTestCases.forEach(
+            (rowLetter, expectedLine) -> {
+                var actualLine = diamond.getLine(rowLetter);
+                assertThat(actualLine).isEqualTo(expectedLine);
+            }
+        );
+    }
 }

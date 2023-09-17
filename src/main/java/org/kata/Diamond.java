@@ -19,7 +19,7 @@ public class Diamond {
     }
 
     private static int getNumberOfSpacesIntoDiamondAt(Character rowLetter) {
-        return 2 * (rowLetter - A + 1) + 1;
+        return 2 * (rowLetter - A) - 1;
     }
 
     public String getRowOffset(char letterOfRow) {
@@ -30,5 +30,13 @@ public class Diamond {
 
     public static String addOffset(String row, String offset) {
         return offset + row + offset;
+    }
+
+    public String getLine(Character rowLetter) {
+        var row = getRow(rowLetter);
+        var offset = getRowOffset(rowLetter);
+        var line = addOffset(row, offset);
+
+        return line;
     }
 }
